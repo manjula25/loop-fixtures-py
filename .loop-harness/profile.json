@@ -1,0 +1,12 @@
+{
+  "language": "python",
+  "installCmd": "pip install -e \".[test]\"",
+  "testCmd": "pytest -q",
+  "singleTestCmd": "pytest -q {test}",
+  "baselineFailures": [
+    "tests/test_dates.py::TestParseIso8601::test_utc_timestamp_with_z",
+    "tests/test_textops.py::TestSlugify::test_basic_phrase",
+    "tests/test_textops.py::TestTitlecase::test_capitalizes_each_word"
+  ],
+  "expectedDurationSec": 11
+}
