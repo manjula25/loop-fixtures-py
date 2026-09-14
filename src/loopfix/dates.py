@@ -1,6 +1,6 @@
 """Date and time utilities for loopfix."""
 
-from datetime import datetime
+from datetime import datetime, timezone
 
 
 def parse_iso8601(value: str) -> datetime:
@@ -9,4 +9,7 @@ def parse_iso8601(value: str) -> datetime:
     Accepts both naive timestamps (``2026-09-11T10:30:00``) and UTC timestamps
     with a trailing ``Z`` (``2026-09-11T10:30:00Z``).
     """
+    if value.endswith("Z"):
+        dt = datetime.strptime(value[:-1], "%Y-%m-%dT%H:%M:%S")
+        return dt.replace(tzinfo=timezone.utc)
     return datetime.strptime(value, "%Y-%m-%dT%H:%M:%S")
