@@ -14,7 +14,7 @@ def slugify(text: str) -> str:
         for ch in text
     )
     words = [w for w in cleaned.split() if w]
-    return "-".join(words)[1:]
+    return "-".join(words)
 
 
 def titlecase(text: str) -> str:
