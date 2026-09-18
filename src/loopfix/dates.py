@@ -10,7 +10,9 @@ def parse_iso8601(value: str) -> datetime:
     with a trailing ``Z`` (``2026-09-11T10:30:00Z``).
     """
     if value.endswith("Z"):
-        return datetime.strptime(value, "%Y-%m-%dT%H:%M:%SZ").replace(
-            tzinfo=timezone.utc
-        )
+        try:
+            parsed = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%fZ")
+        except ValueError:
+            parsed = datetime.strptime(value, "%Y-%m-%dT%H:%M:%SZ")
+        return parsed.replace(tzinfo=timezone.utc)
     return datetime.strptime(value, "%Y-%m-%dT%H:%M:%S")
