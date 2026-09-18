@@ -7,7 +7,8 @@ def parse_iso8601(value: str) -> datetime:
     """Parse an ISO 8601 timestamp string into a :class:`datetime`.
 
     Accepts both naive timestamps (``2026-09-11T10:30:00``) and UTC timestamps
-    with a trailing ``Z`` (``2026-09-11T10:30:00Z``).
+    with a trailing ``Z`` (``2026-09-11T10:30:00Z``). Fractional seconds are
+    preserved in either form.
     """
     if value.endswith("Z"):
         try:
@@ -15,4 +16,7 @@ def parse_iso8601(value: str) -> datetime:
         except ValueError:
             parsed = datetime.strptime(value, "%Y-%m-%dT%H:%M:%SZ")
         return parsed.replace(tzinfo=timezone.utc)
-    return datetime.strptime(value, "%Y-%m-%dT%H:%M:%S")
+    try:
+        return datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+    except ValueError:
+        return datetime.strptime(value, "%Y-%m-%dT%H:%M:%S")
