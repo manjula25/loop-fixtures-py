@@ -15,4 +15,7 @@ def parse_iso8601(value: str) -> datetime:
         except ValueError:
             parsed = datetime.strptime(value, "%Y-%m-%dT%H:%M:%SZ")
         return parsed.replace(tzinfo=timezone.utc)
-    return datetime.strptime(value, "%Y-%m-%dT%H:%M:%S")
+    try:
+        return datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+    except ValueError:
+        return datetime.strptime(value, "%Y-%m-%dT%H:%M:%S")
