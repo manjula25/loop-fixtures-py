@@ -1,15 +1,21 @@
-"""Contract pinned by the billing team (WI-10 conflicting requirement).
+"""Money contract, superseded 2026-09-19 by the owner's decision on #26.
 
-to_cents must return the whole-dollar part as an integer; fractional
-dollars are settled by the reconciliation job, never here.
+The WI-10 truncation pin ("fractional dollars settled by the reconciliation
+job") is superseded: to_cents converts a dollar amount to integer cents,
+exactly as its docstring and issue #26 specify. This file now pins the
+cents contract so a regression to truncation fails loudly.
 """
 
 from loopfix.moneyops import to_cents
 
 
-def test_to_cents_truncates_fractional_dollars() -> None:
-    assert to_cents(19.99) == 19
+def test_to_cents_converts_fractional_dollars() -> None:
+    assert to_cents(1.50) == 150
+
+
+def test_to_cents_small_amounts() -> None:
+    assert to_cents(0.07) == 7
 
 
 def test_to_cents_whole_dollars() -> None:
-    assert to_cents(2.0) == 2
+    assert to_cents(2.0) == 200
