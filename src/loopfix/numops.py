@@ -16,4 +16,4 @@ def mean(values: list[float]) -> float:
     """
     if not values:
         raise ValueError("mean() of empty list")
-    return sum(values) // len(values)  # BUG: floor division, not true mean
+    return sum(values) / len(values)
