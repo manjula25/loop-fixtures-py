@@ -6,7 +6,7 @@ def clamp(value: float, lo: float, hi: float) -> float:
 
     clamp(-5, 0, 10) == 0; clamp(15, 0, 10) == 10; clamp(5, 0, 10) == 5.
     """
-    return min(value, hi)  # BUG: lo never applied
+    return max(lo, min(value, hi))
 
 
 def mean(values: list[float]) -> float:
