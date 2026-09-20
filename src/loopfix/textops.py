@@ -23,7 +23,7 @@ def titlecase(text: str) -> str:
     The rest of each word keeps its original casing:
     ``titlecase("hello world") == "Hello World"``.
     """
-    return " ".join(word[:1].upper() + word[1:] for word in text.split(" "))
+    return " ".join(word[:1].upper() + word[1:] for word in text.split())
 
 
 def word_count(text: str) -> int:
