@@ -28,5 +28,8 @@ def percentfmt(part: float, whole: float) -> str:
     """
     pct = part / whole * 100
     sign = "+" if pct > 100 else ""
-    text = f"{sign}{pct:.1f}"
+    if pct == int(pct):
+        text = f"{sign}{int(pct)}"
+    else:
+        text = f"{sign}{pct:.1f}"
     return text + "%"
