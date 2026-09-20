@@ -17,4 +17,5 @@ def moneyfmt(amount: float) -> str:
     """
     dollars, cents = f"{abs(amount):.2f}".split(".")
     sign = "-" if amount < 0 else ""
+    dollars = f"{int(dollars):,}"
     return f"{sign}${dollars}.{cents}"
