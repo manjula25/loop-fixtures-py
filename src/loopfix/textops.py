@@ -23,12 +23,15 @@ def titlecase(text: str) -> str:
     The rest of each word keeps its original casing:
     ``titlecase("hello world") == "Hello World"``.
     """
-    return " ".join(word.capitalize() for word in text.split(" "))
+    return " ".join(word[:1].upper() + word[1:] for word in text.split(" "))
 
 
 def word_count(text: str) -> int:
-    """Return the number of whitespace-separated words in *text*."""
-    return len(text.split())
+    """Return the number of whitespace-separated words in *text*.
+
+    Hyphenated compounds are one word: ``word_count("state-of-the-art") == 1``.
+    """
+    return len(text.replace("-", " ").split())
 
 
 def tag_url(tag: str) -> str:
