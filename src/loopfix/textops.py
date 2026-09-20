@@ -40,4 +40,4 @@ def tag_url(tag: str) -> str:
     The tag is slugified (digits kept) and joined with hyphens:
     ``tag_url("Python 3 Guide") == "/tags/python-3-guide/"``.
     """
-    return f"/tags/{slugify(tag).split("-")[0]}/"
+    return f"/tags/{slugify(tag)}/"
