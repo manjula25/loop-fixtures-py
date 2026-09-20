@@ -12,5 +12,5 @@ def initials(full_name: str) -> str:
     words = full_name.split()
     parts = []
     for w in words:
-        parts.extend(segment[0] for segment in w.split("-"))
+        parts.extend(segment[0].upper() for segment in w.split("-"))
     return ".".join(parts)
