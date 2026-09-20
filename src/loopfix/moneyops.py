@@ -16,4 +16,5 @@ def moneyfmt(amount: float) -> str:
     ``moneyfmt(-5.25) == "-$5.25"``; ``moneyfmt(1234567.89) == "$1,234,567.89"``.
     """
     dollars, cents = f"{abs(amount):.2f}".split(".")
-    return f"${dollars}.{cents}"
+    sign = "-" if amount < 0 else ""
+    return f"{sign}${dollars}.{cents}"
