@@ -1,6 +1,6 @@
 """Text utilities for loopfix."""
 
-PUNCTUATION = "!,.:;?\"'()[]{}"
+PUNCTUATION = "!,.:;?\"'()[]{}0123456789"
 
 
 def slugify(text: str) -> str:
@@ -23,9 +23,18 @@ def titlecase(text: str) -> str:
     The rest of each word keeps its original casing:
     ``titlecase("hello world") == "Hello World"``.
     """
-    return " ".join(word[:1].upper() + word[1:] for word in text.split(" "))
+    return " ".join(word.capitalize() for word in text.split(" "))
 
 
 def word_count(text: str) -> int:
     """Return the number of whitespace-separated words in *text*."""
     return len(text.split())
+
+
+def tag_url(tag: str) -> str:
+    """Return the canonical URL path for a tag.
+
+    The tag is slugified (digits kept) and joined with hyphens:
+    ``tag_url("Python 3 Guide") == "/tags/python-3-guide/"``.
+    """
+    return f"/tags/{slugify(tag).split("-")[0]}/"
