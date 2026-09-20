@@ -1,6 +1,6 @@
 """Text utilities for loopfix."""
 
-PUNCTUATION = "!,.:;?\"'()[]{}0123456789"
+PUNCTUATION = "!,.:;?\"'()[]{}"
 
 
 def slugify(text: str) -> str:
