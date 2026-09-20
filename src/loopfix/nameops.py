@@ -10,4 +10,7 @@ def initials(full_name: str) -> str:
     ``initials("ada lovelace") == "A.L"``.
     """
     words = full_name.split()
-    return ".".join(w[0] for w in words)
+    parts = []
+    for w in words:
+        parts.extend(segment[0] for segment in w.split("-"))
+    return ".".join(parts)
