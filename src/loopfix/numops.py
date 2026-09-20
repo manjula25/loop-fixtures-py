@@ -26,5 +26,7 @@ def percentfmt(part: float, whole: float) -> str:
     carry a leading plus: ``percentfmt(1, 4) == "25%"``; ``percentfmt(1, 3)
     == "33.3%"``; ``percentfmt(5, 3) == "+166.7%"``.
     """
-    text = f"{part / whole * 100:.1f}"
+    pct = part / whole * 100
+    sign = "+" if pct > 100 else ""
+    text = f"{sign}{pct:.1f}"
     return text + "%"
