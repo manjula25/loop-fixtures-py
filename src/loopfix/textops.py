@@ -31,7 +31,7 @@ def word_count(text: str) -> int:
 
     Hyphenated compounds are one word: ``word_count("state-of-the-art") == 1``.
     """
-    return len(text.replace("-", " ").split())
+    return len(text.split())
 
 
 def tag_url(tag: str) -> str:
