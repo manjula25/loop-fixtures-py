@@ -36,8 +36,12 @@ def word_count(text: str) -> int:
     """Return the number of whitespace-separated words in *text*.
 
     Hyphenated compounds are one word: ``word_count("state-of-the-art") == 1``.
+    Whitespace-separated chunks with no alphanumeric character (e.g. ``---``) do
+    not count as words: ``word_count("hello --- world") == 2``.
     """
-    return len(text.split())
+    return sum(
+        1 for chunk in text.split() if any(c.isalnum() for c in chunk)
+    )
 
 
 def tag_url(tag: str) -> str:
